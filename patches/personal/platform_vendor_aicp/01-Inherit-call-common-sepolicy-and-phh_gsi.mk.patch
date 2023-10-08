@@ -1,0 +1,31 @@
+From 26ad5266d16c9697b53fedd331f04ae2b408e150 Mon Sep 17 00:00:00 2001
+From: ChonDoit <thphantomblog@gmail.com>
+Date: Tue, 3 Oct 2023 00:39:04 +0000
+Subject: [PATCH] Inherit call common sepolicy and phh_gsi.mk
+
+Change-Id: Ic6c2ecca614688fc5735b4dc3261c54e9b04d9ac
+---
+ config/common.mk | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/config/common.mk b/config/common.mk
+index fd7214c..b804f0a 100644
+--- a/config/common.mk
++++ b/config/common.mk
+@@ -12,6 +12,13 @@ include vendor/aicp/config/aicp_packages.mk
+ # Include AICP version
+ include vendor/aicp/config/aicp_props.mk
+ 
++# PHH GSI
++$(call inherit-product, vendor/aicp/config/phh_gsi.mk)
++$(call inherit-product, device/lineage/sepolicy/common/sepolicy.mk)
++
++TARGET_SCREEN_WIDTH := 1280
++TARGET_SCREEN_HEIGHT := 720
++
+ # AOSP recovery flashing
+ ifeq ($(TARGET_USES_AOSP_RECOVERY),true)
+ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+-- 
+2.34.1
+
